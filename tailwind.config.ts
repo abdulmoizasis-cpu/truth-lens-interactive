@@ -107,6 +107,8 @@ export default {
 				// Slides
 				'slide-in-right': { '0%': { transform: 'translateX(100%)' }, '100%': { transform: 'translateX(0)' } },
 				'slide-out-right': { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(100%)' } },
+				// Infinite slide for sources
+				'slide': { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',

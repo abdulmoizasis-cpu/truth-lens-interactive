@@ -5,6 +5,7 @@ import { FactCheckForm, FactCheckFormValues } from "@/components/factcheck/FactC
 import ProgressSteps, { Step } from "@/components/factcheck/ProgressSteps";
 import FactCheckResult, { FactCheckData, Verdict } from "@/components/factcheck/FactCheckResult";
 import SEOHead from "@/components/SEOHead";
+import VerifiedSources from "@/components/VerifiedSources";
 import { ShieldCheck, AlertTriangle, HelpCircle } from "lucide-react";
 
 const steps: Step[] = [
@@ -176,6 +177,8 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        <VerifiedSources />
       </main>
 
       <footer className="border-t">

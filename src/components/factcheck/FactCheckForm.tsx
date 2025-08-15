@@ -23,27 +23,31 @@ export const FactCheckForm = ({ onSubmit, isLoading }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" aria-label="Fact check form">
-      <div className="space-y-2">
-        <Label htmlFor="claim" className="text-base">Enter a claim to verify</Label>
+    <form onSubmit={handleSubmit} className="space-y-6" aria-label="Fact check form">
+      <div className="space-y-3">
+        <Label htmlFor="claim" className="text-base font-semibold text-foreground">Enter a claim to verify</Label>
         <Textarea
           id="claim"
           placeholder="e.g., The Great Barrier Reef has lost over 50% of its coral since 1995."
           value={claim}
           onChange={(e) => setClaim(e.target.value)}
           rows={4}
-          className="resize-none"
+          className="resize-none border-border/50 focus:border-primary/50 focus:ring-primary/20 bg-background/50 backdrop-blur-sm transition-all duration-300"
         />
       </div>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="flex items-center justify-between pt-2">
+        <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/20 border border-border/30">
           <Switch id="detailed" checked={detailed} onCheckedChange={setDetailed} />
-          <Label htmlFor="detailed">Detailed analysis</Label>
+          <Label htmlFor="detailed" className="font-medium text-foreground cursor-pointer">Detailed analysis</Label>
         </div>
-        <Button type="submit" disabled={isLoading} className="hover-scale">
+        <Button 
+          type="submit" 
+          disabled={isLoading || !claim.trim()} 
+          className="hover-scale bg-hero hover:shadow-[var(--shadow-glow)] transition-all duration-300 px-6 py-3 h-auto font-semibold"
+        >
           <SendHorizonal className="mr-2 h-4 w-4" />
-          {isLoading ? "Checking..." : "Send"}
+          {isLoading ? "Analyzing..." : "Analyze Claim"}
         </Button>
       </div>
     </form>

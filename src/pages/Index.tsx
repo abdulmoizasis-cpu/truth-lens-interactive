@@ -5,6 +5,7 @@ import { FactCheckForm, FactCheckFormValues } from "@/components/factcheck/FactC
 import ProgressSteps, { Step } from "@/components/factcheck/ProgressSteps";
 import FactCheckResult, { FactCheckData, Verdict } from "@/components/factcheck/FactCheckResult";
 import SEOHead from "@/components/SEOHead";
+import { ShieldCheck, AlertTriangle, HelpCircle } from "lucide-react";
 
 const steps: Step[] = [
   { id: "parse", label: "Parsing claim" },
@@ -111,16 +112,39 @@ const Index = () => {
 
       <main>
         <section ref={containerRef} className="bg-spotlight">
-          <div className="container mx-auto px-4 py-12 md:py-16">
-            <div className="mx-auto max-w-3xl text-center space-y-3">
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Verify any claim instantly</h1>
-              <p className="text-muted-foreground text-lg">Get a verdict with confidence, a concise summary, and authoritative sources.</p>
+          <div className="container mx-auto px-4 py-16 md:py-24">
+            <div className="mx-auto max-w-4xl text-center space-y-6">
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight bg-hero bg-clip-text text-transparent">
+                  Verify any claim instantly
+                </h1>
+                <p className="text-muted-foreground text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
+                  Combat misinformation with AI-powered fact-checking. Get verdicts, confidence scores, and trusted sources.
+                </p>
+              </div>
+              <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 text-success" />
+                  <span>Verified Sources</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-warning" />
+                  <span>Real-time Analysis</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <HelpCircle className="h-4 w-4 text-primary" />
+                  <span>Professional Grade</span>
+                </div>
+              </div>
             </div>
 
-            <div className="mx-auto mt-8 grid max-w-4xl gap-6 md:grid-cols-5">
-              <Card className="md:col-span-3 shadow-[var(--shadow-elevate)] animate-scale-in">
-                <CardHeader>
-                  <CardTitle>Fact check</CardTitle>
+            <div className="mx-auto mt-12 grid max-w-6xl gap-8 md:grid-cols-5">
+              <Card className="md:col-span-3 bg-card-gradient shadow-[var(--shadow-elevate)] hover-lift animate-scale-in border border-border/50">
+                <CardHeader className="pb-6">
+                  <CardTitle className="text-xl flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-hero"></div>
+                    Fact Check Analysis
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <FactCheckForm onSubmit={handleSubmit} isLoading={isLoading} />
@@ -136,9 +160,15 @@ const Index = () => {
                 {result ? (
                   <FactCheckResult data={result} showDetails={showDetails} />
                 ) : (
-                  <Card className="h-full animate-fade-in">
-                    <CardContent className="p-6 text-sm text-muted-foreground">
-                      Submit a claim to see verdict, confidence, summary, and sources.
+                  <Card className="h-full animate-fade-in bg-card-gradient border border-border/50">
+                    <CardContent className="p-8 text-center space-y-4">
+                      <div className="w-16 h-16 rounded-full bg-hero mx-auto opacity-20"></div>
+                      <div className="space-y-2">
+                        <h3 className="font-semibold text-foreground">Ready to Analyze</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          Submit a claim to see our AI-powered verdict, confidence score, analysis summary, and verified sources.
+                        </p>
+                      </div>
                     </CardContent>
                   </Card>
                 )}

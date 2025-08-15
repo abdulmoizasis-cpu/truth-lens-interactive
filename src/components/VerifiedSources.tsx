@@ -1,16 +1,18 @@
+import { Globe, Newspaper, Radio, Tv, Building2, BookOpen } from "lucide-react";
+
 const sources = [
-  { name: "Reuters", brand: "R", color: "bg-blue-600 text-white", type: "International" },
-  { name: "Associated Press", brand: "AP", color: "bg-red-600 text-white", type: "News Agency" },
-  { name: "BBC News", brand: "BBC", color: "bg-red-700 text-white", type: "Broadcasting" },
-  { name: "CNN", brand: "CNN", color: "bg-red-600 text-white", type: "Television" },
-  { name: "The Guardian", brand: "G", color: "bg-blue-900 text-white", type: "Daily" },
-  { name: "Wall Street Journal", brand: "WSJ", color: "bg-gray-900 text-white", type: "Finance" },
-  { name: "NPR", brand: "NPR", color: "bg-gray-800 text-white", type: "Public Radio" },
-  { name: "PBS NewsHour", brand: "PBS", color: "bg-blue-700 text-white", type: "Public TV" },
-  { name: "TIME", brand: "TIME", color: "bg-red-600 text-white", type: "Magazine" },
-  { name: "The Economist", brand: "E", color: "bg-red-700 text-white", type: "Weekly" },
-  { name: "Financial Times", brand: "FT", color: "bg-pink-600 text-white", type: "Business" },
-  { name: "New York Times", brand: "T", color: "bg-gray-900 text-white", type: "Daily" },
+  { name: "Reuters", icon: Globe, type: "International" },
+  { name: "Associated Press", icon: Newspaper, type: "News Agency" },
+  { name: "BBC News", icon: Radio, type: "Broadcasting" },
+  { name: "CNN", icon: Tv, type: "Television" },
+  { name: "The Guardian", icon: Newspaper, type: "Daily" },
+  { name: "Wall Street Journal", icon: Building2, type: "Finance" },
+  { name: "NPR", icon: Radio, type: "Public Radio" },
+  { name: "PBS NewsHour", icon: Tv, type: "Public TV" },
+  { name: "TIME", icon: BookOpen, type: "Magazine" },
+  { name: "The Economist", icon: BookOpen, type: "Weekly" },
+  { name: "Financial Times", icon: Building2, type: "Business" },
+  { name: "New York Times", icon: Newspaper, type: "Daily" },
 ];
 
 // Duplicate sources for seamless infinite scroll
@@ -34,24 +36,27 @@ export const VerifiedSources = () => {
           
           {/* Sliding container */}
           <div className="flex gap-8 animate-[slide_30s_linear_infinite] hover:[animation-play-state:paused]">
-            {infiniteSources.map((source, index) => (
-              <div
-                key={`${source.name}-${index}`}
-                className="flex items-center gap-4 bg-card-gradient border border-border/30 rounded-lg px-6 py-4 shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)] transition-all duration-300 min-w-[280px] group hover-lift"
-              >
-                <div className={`w-12 h-12 rounded-lg ${source.color} flex items-center justify-center font-bold text-sm group-hover:scale-105 transition-transform duration-300 shadow-sm`}>
-                  {source.brand}
+            {infiniteSources.map((source, index) => {
+              const IconComponent = source.icon;
+              return (
+                <div
+                  key={`${source.name}-${index}`}
+                  className="flex items-center gap-3 bg-card-gradient border border-border/30 rounded-lg px-6 py-4 shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)] transition-all duration-300 min-w-[240px] group hover-lift"
+                >
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                    <IconComponent className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-foreground text-sm truncate">
+                      {source.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      {source.type}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-foreground text-sm truncate">
-                    {source.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    {source.type}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
         
